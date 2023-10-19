@@ -15,6 +15,7 @@ using Weapon163featanisimovburmistrov.ClassHelper;
 using Weapon163featanisimovburmistrov.DB;
 using static Weapon163featanisimovburmistrov.ClassHelper.EFClass;
 using static Weapon163featanisimovburmistrov.ClassHelper.CartClass;
+
 using System.Collections.ObjectModel;
 
 
@@ -28,6 +29,7 @@ namespace Weapon163featanisimovburmistrov.Windows
         public Cart()
         {
             InitializeComponent();
+            GetListProduct();
         }
         private void GetListProduct()
         {
@@ -98,6 +100,42 @@ namespace Weapon163featanisimovburmistrov.Windows
             MainWindow productListWindow = new MainWindow();
             productListWindow.Show();
             Close();
+        }
+
+        private void nazad_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow productListWindow = new MainWindow();
+            productListWindow.Show();
+            Close();
+        }
+
+        private void minys_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button == null)
+            {
+                return;
+            }
+
+            var selectedProduct = button.DataContext as DB.Product;
+
+
+            if (selectedProduct != null)
+            {
+
+                if (selectedProduct.Quantity == 1 || selectedProduct.Quantity == 0)
+                {
+                    Products.Remove(selectedProduct);
+                }
+                else
+                {
+                    selectedProduct.Quantity--;
+                    int o = Products.IndexOf(selectedProduct);
+                    Products.Remove(selectedProduct);
+                    Products.Insert(o, selectedProduct);
+                }
+            }
+            GetListProduct();
         }
     }
 }

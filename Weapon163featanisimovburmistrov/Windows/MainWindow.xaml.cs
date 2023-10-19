@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Weapon163featanisimovburmistrov.ClassHelper;
 using Weapon163featanisimovburmistrov.DB;
 using static Weapon163featanisimovburmistrov.ClassHelper.EFClass;
+using static Weapon163featanisimovburmistrov.ClassHelper.CartClass;
 
 namespace Weapon163featanisimovburmistrov
 {
@@ -22,10 +23,11 @@ namespace Weapon163featanisimovburmistrov
     /// </summary>
     public partial class MainWindow : Window
     {
+        public object selProduct;
         public MainWindow()
         {
             InitializeComponent();
-          
+
         }
 
         private void korz_Click(object sender, RoutedEventArgs e)
@@ -47,14 +49,44 @@ namespace Weapon163featanisimovburmistrov
 
         private void vhod_Click_1(object sender, RoutedEventArgs e)
         {
-           Windows.Auth auth = new Windows.Auth();
+            Windows.Auth auth = new Windows.Auth();
             auth.Show();
-           this.Close();
+            this.Close();
         }
 
         private void pist_Click(object sender, RoutedEventArgs e)
         {
             gg();
+        }
+
+        private void BtnAddToCart_Click(object sender, RoutedEventArgs e)
+        {
+            bool a = true;
+            Button button = sender as Button;
+            if (button == null)
+            {
+                return;
+            }
+            var selectedProduct = button.DataContext as DB.Product;
+            selProduct = selectedProduct;
+
+
+            if (selectedProduct != null)
+            {
+                for (int i = 0; i < Products.Count; i++)
+                {
+                    if (Products[i] == selectedProduct)
+                    {
+                        Products[i].Quantity++;
+                        a = false;
+                    }
+                }
+                if (a)
+                {
+                    selectedProduct.Quantity = 1;
+                    Products.Add(selectedProduct);
+                }
+            }
         }
     }
 }

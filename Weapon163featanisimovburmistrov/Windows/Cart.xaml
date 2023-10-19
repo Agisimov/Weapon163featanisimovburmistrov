@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Weapon163featanisimovburmistrov.Windows"
         mc:Ignorable="d"
-        Title="Cart" Height="450" Width="800">
+        Title="Cart" Height="800" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="511*"/>
+           
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -16,17 +20,14 @@
 
 
         <TextBlock Text="Корзина"
-                   HorizontalAlignment="Center"
+                   HorizontalAlignment="Left"
                    FontSize="30"                
-                   FontWeight="Black" Foreground="#FF543213"/>
+                   FontWeight="Black" Foreground="#FF543213" Margin="335,0,0,0"/>
 
         <ListView x:Name="CartList" 
-                  Grid.Row="2" 
-                 
-                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-
-
-
+          Grid.Row="2" 
+     d:ItemsSource="{d:SampleData ItemCount=7}"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -36,22 +37,34 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black"
-                            BorderThickness="1"
-                            Margin="5"
-                            Width="200"
-                            Height="250">
-                        <StackPanel>
-                           
-                           
-                            
-                            
+                    BorderThickness="1"
+                    Margin="5"
+                    Width="200"
+                    Height="250">
+                        <StackPanel VerticalAlignment="Bottom">
+                            <TextBlock Text="{Binding Title}"
+                                FontSize="18"
+                               FontWeight="Bold"
+                              
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Stretch"/>
+                            <TextBlock Text="{Binding Cost}"
+                                 FontSize="18"
+                               FontWeight="Bold"
+                              
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Stretch"/>
+                            <Button x:Name="minys"
+                                    HorizontalAlignment="Right"
+                                     Width="60"
+                                    Content="Убрать"
+                                    Click="minys_Click"
+                                    Height="30"/>
+
                         </StackPanel>
-
-
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
-
         </ListView>
         <Button x:Name="Pay"
                 Height="50"
@@ -59,7 +72,15 @@
                 Content="Оплатить"
                 FontSize="20"
                 Grid.Row="3"
-                HorizontalAlignment="Right" 
+                HorizontalAlignment="Right" Grid.Column="1"  Grid.RowSpan="2" 
+                />
+        <Button x:Name="nazad" Content="Назад"
+                Grid.Row="3"
+                Height="50"
+                Width="100"
+HorizontalAlignment="Left"
+                Click="nazad_Click"
+                FontSize="20" Grid.RowSpan="2"
                 />
     </Grid>
 </Window>

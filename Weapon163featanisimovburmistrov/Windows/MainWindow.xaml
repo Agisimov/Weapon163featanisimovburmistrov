@@ -50,7 +50,7 @@
 
         <ListView x:Name="pistolList" 
                   Grid.Row="1" 
-            
+             d:ItemsSource="{d:SampleData ItemCount=7}"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -65,7 +65,7 @@
                             Margin="5"
                             Width="200"
                             Height="250">
-                        <StackPanel VerticalAlignment="Center">
+                        <StackPanel VerticalAlignment="Bottom">
                             <TextBlock Text="{Binding Title}"
                                         FontSize="18"
                                        FontWeight="Bold"
@@ -79,12 +79,13 @@
                                        TextWrapping="Wrap"
                                        VerticalAlignment="Stretch"/>
                             <Button x:Name="BtnAddToCart"
-                                    Width="40"
+                                    Width="60"
                                     Height="30"
-                                    
+                                    Content="в корзину"
+                                    Margin=" 0 0 20 0 "
                                     BorderThickness="0"
                                     HorizontalAlignment="Right"
-                                    
+                                    Click="BtnAddToCart_Click"
                                     VerticalAlignment="Stretch"
                                     >
 
