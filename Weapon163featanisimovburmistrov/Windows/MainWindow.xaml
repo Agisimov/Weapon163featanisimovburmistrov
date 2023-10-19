@@ -1,0 +1,100 @@
+﻿<Window x:Class="Weapon163featanisimovburmistrov.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Weapon163featanisimovburmistrov"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <TextBlock Text="ОРУЖЕЙНЫЙ МАГАЗИН «ТРАТИЛ»"
+                   FontSize="30"
+                   VerticalAlignment="Top"
+                   Height="50"
+                   Width="500" Margin="148,0,147.556,0"
+                   />
+
+        <WrapPanel Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 50 0 0 " Height="80">
+            <Button x:Name="pist"
+                Width="110"
+                  Content="Католог"
+                   Margin=" 10  "
+                Height="40"
+                    Click="pist_Click"
+                />
+            <Button x:Name="vhod"
+                Width="110"
+                   Content="Войти"
+                    Margin=" 10 "
+                Height="40" Click="vhod_Click_1"
+                  
+                    
+                    
+                    
+                />
+            <Button x:Name="korz"
+                Width="110"
+                   Content="Корзина"
+                    Margin=" 10  "
+                Height="40"
+                    Click="korz_Click"
+                />
+        </WrapPanel>
+
+        <ListView x:Name="pistolList" 
+                  Grid.Row="1" 
+            
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black"
+                            BorderThickness="1"
+                            Margin="5"
+                            Width="200"
+                            Height="250">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Title}"
+                                        FontSize="18"
+                                       FontWeight="Bold"
+                                      
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Stretch"/>
+                            <TextBlock Text="{Binding Cost}"
+                                         FontSize="18"
+                                       FontWeight="Bold"
+                                      
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Stretch"/>
+                            <Button x:Name="BtnAddToCart"
+                                    Width="40"
+                                    Height="30"
+                                    
+                                    BorderThickness="0"
+                                    HorizontalAlignment="Right"
+                                    
+                                    VerticalAlignment="Stretch"
+                                    >
+
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+
+    </Grid>
+</Window>
